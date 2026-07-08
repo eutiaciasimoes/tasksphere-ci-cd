@@ -21,11 +21,11 @@ jobs:
 
     - name: Install backend dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r backend/requirements.txt
 
     - name: Run Django tests
       run: |
-        python manage.py test
+        python backend/manage.py test
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
