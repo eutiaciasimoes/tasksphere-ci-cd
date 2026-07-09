@@ -28,9 +28,11 @@ jobs:
 
     - name: Run Django tests
       working-directory: backend
+      shell: bash
       run: |
         echo "PYTHONPATH before: $PYTHONPATH"
-        export PYTHONPATH=$(pwd):$PYTHONPATH
+        PYTHONPATH="$(pwd):$PYTHONPATH"
+        export PYTHONPATH
         echo "PYTHONPATH after: $PYTHONPATH"
         python manage.py test
 
@@ -47,3 +49,5 @@ jobs:
     - name: Build frontend
       working-directory: frontend
       run: npm run build
+
+    
