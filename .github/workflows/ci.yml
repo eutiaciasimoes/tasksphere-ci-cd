@@ -29,7 +29,9 @@ jobs:
     - name: Run Django tests
       working-directory: backend
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        echo "PYTHONPATH before: $PYTHONPATH"
+        export PYTHONPATH=$(pwd):$PYTHONPATH
+        echo "PYTHONPATH after: $PYTHONPATH"
         python manage.py test
 
     # ---------------- FRONTEND ----------------
