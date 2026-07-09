@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PYTHONPATH: "${{ github.workspace }}/backend"
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -28,13 +31,7 @@ jobs:
 
     - name: Run Django tests
       working-directory: backend
-      shell: bash
-      run: |
-        echo "PYTHONPATH before: $PYTHONPATH"
-        PYTHONPATH="$(pwd):$PYTHONPATH"
-        export PYTHONPATH
-        echo "PYTHONPATH after: $PYTHONPATH"
-        python manage.py test
+      run: python manage.py test
 
     # ---------------- FRONTEND ----------------
     - name: Set up Node.js
@@ -49,5 +46,3 @@ jobs:
     - name: Build frontend
       working-directory: frontend
       run: npm run build
-
-    
